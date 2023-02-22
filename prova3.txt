@@ -1,0 +1,11 @@
+Nome: paolo, Cognome: Rossi, ID: 1, Telefono: 3754465657, Indirizzo: via roma , 13, Codice fiscale: fgrtget5gtrgrtgt, Email: mario@libero.it
+Nome: emanuele, Cognome: pica, ID: 3, Telefono: +39485738974, Indirizzo: via angelini, 5, Codice fiscale: pcimnl99d10h501e, Email: emanuelepica.dev@gmail.com
+Nome: manuel, Cognome: gismondo, ID: 4, Telefono: 384755647, Indirizzo: via dei prati fioriti, Codice fiscale: pcimnl99d10h501w, Email: gismondo.test@gmail.com
+Nome: lorenzo, Cognome: gallo, ID: 5, Telefono: 3854775482, Indirizzo: via brindisi, Codice fiscale: pcimnleijdiejd, Email: test@gmail.com
+Nome: elsa, Cognome: cascone, ID: 6, Telefono: 3756885485, Indirizzo: via berlino, Codice fiscale: pcimsnjefnjnde, Email: test@gmail.com
+Nome: gianni, Cognome: birillo, ID: 7, Telefono: 3754557658, Indirizzo: via del birillo, Codice fiscale: widjejdowj, Email: test@gmail.com
+Nome: claudio, Cognome: locarno, ID: 8, Telefono: 3756473758, Indirizzo: via del giudice, Codice fiscale: oekfpoeopjfpe, Email: loca@gmail.com
+Nome: lorenzo, Cognome: micheli, ID: 9, Telefono: 3756647584, Indirizzo: via lazio, Codice fiscale: pdkcediedkef, Email: test@gmail.com
+Nome: francesco, Cognome: paolini, ID: 10, Telefono: 3755647364, Indirizzo: via Po, Codice fiscale: kkemfmpefoeof, Email: paolini@gmai.com
+Nome: maria, Cognome: dececco, ID: 11, Telefono: 3755445658, Indirizzo: via palermo, Codice fiscale: pffkeokfoekf, Email: dececco@gmail.com
+Nome: giuseppe, Cognome: pirelli, ID: 12, Telefono: 3855447565, Indirizzo: via angelini, Codice fiscale: pemciecjiej, Email: email@gmail.com

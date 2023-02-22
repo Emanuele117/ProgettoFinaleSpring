@@ -1,5 +1,6 @@
 package it.logicainformatica.progettoSpring.database;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -122,8 +123,14 @@ public class AnagraficaDB {
 		// CREO L'OGGETTO CONNESSIONE
 		Connection dbconn = null;
 		
+		//STRINGA PER IL PATH DEL FILE
+		String path = "C:/prova3.txt";
+		
+		// LIBRERIA FILE PER CREARE UN NUOVO FILE
+		File newFile = new File(path);
+		
 		// USO LA LIBRERIA FILEWRITER PER INSERIRE DATI SUL FILE DI TESTO
-		FileWriter writer = new FileWriter("prova.txt");
+		FileWriter writer = new FileWriter("prova3.txt");
 		
 		try {
 
@@ -149,8 +156,7 @@ public class AnagraficaDB {
 				ana.setIndirizzo(rs.getString("indirizzo"));
 				ana.setCodiceFiscale(rs.getString("cf"));
 				ana.setEmail(rs.getString("email"));
-
-				// SCRIVO I DATI SU FILE
+				
 				writer.write("Nome: " + ana.getNome() + ", ");
 	            writer.write("Cognome: " + ana.getCognome() + ", ");
 	            writer.write("ID: " + ana.getId() + ", ");
@@ -158,6 +164,8 @@ public class AnagraficaDB {
 	            writer.write("Indirizzo: " + ana.getIndirizzo() + ", ");
 	            writer.write("Codice fiscale: " + ana.getCodiceFiscale() + ", ");
 	            writer.write("Email: " + ana.getEmail() + "\n");
+
+	            
 
 			}
 

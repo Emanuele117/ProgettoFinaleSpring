@@ -58,7 +58,7 @@ public class AnagraficaController {
 	    try {
 	    	
 	        // CREO UN OGGETTO BUFFEREDREDADER PER LEGGERE IL CONTENUTO DEL FILE
-	        BufferedReader reader = new BufferedReader(new FileReader("prova.txt"));
+	        BufferedReader reader = new BufferedReader(new FileReader("prova2.txt"));
 
 	        // LEGGO IL CONTENUTO DEL FILE E LO METTO IN UNA STRINGA
 	        StringBuilder sb = new StringBuilder();
