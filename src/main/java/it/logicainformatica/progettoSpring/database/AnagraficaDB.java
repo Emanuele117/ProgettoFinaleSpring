@@ -19,7 +19,7 @@ public class AnagraficaDB {
 	Database db = new Database();
 	
 	// INSERISCO UN NUOVO UTENTE
-	public void inserisciUtente(AnagraficaUtente a) {
+	public void inseriscoUtenteDB(AnagraficaUtente a) {
 
 		// CREO L'OGGETTO CONNESSIONE
 		Connection dbconn = null;
@@ -117,12 +117,12 @@ public class AnagraficaDB {
 
 	}
 	
-	public void scrivoSuFile(AnagraficaUtente a) throws IOException {
+	public void scrivoAnagraficaSuFile(AnagraficaUtente a) throws IOException {
 		
 		// CREO L'OGGETTO CONNESSIONE
 		Connection dbconn = null;
 		
-		// CREO FILE DI TESTO
+		// USO LA LIBRERIA FILEWRITER PER INSERIRE DATI SUL FILE DI TESTO
 		FileWriter writer = new FileWriter("prova.txt");
 		
 		try {

@@ -2,6 +2,7 @@ package it.logicainformatica.progettoSpring.bean;
 
 public class AnagraficaUtente {
 
+	// BEAN ANAGRAFICA , SET E GET VARIABILI
 	
 	int id;
 	String nome;

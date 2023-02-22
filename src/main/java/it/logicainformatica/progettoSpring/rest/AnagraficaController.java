@@ -28,15 +28,16 @@ import it.logicainformatica.progettoSpring.database.AnagraficaDB;
 @RequestMapping("/anagrafica-utente")
 public class AnagraficaController {
 
+	//ISTANZA OGGETTO ANAGRAFICADB DOVE RECUPERO I METODI
 	AnagraficaDB a = new AnagraficaDB();
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
 	public void inserisciAnagrafica(@RequestBody AnagraficaUtente anag) {
-		a.inserisciUtente(anag);
+		a.inseriscoUtenteDB(anag);
 		
 		try {
-			a.scrivoSuFile(anag);
+			a.scrivoAnagraficaSuFile(anag);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
