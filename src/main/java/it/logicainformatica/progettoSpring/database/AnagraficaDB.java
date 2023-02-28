@@ -118,65 +118,79 @@ public class AnagraficaDB {
 
 	}
 	
-	public void scrivoAnagraficaSuFile(AnagraficaUtente a) throws IOException {
+	public void scrivoAnagraficaSuFile(AnagraficaUtente anag) throws IOException {
 		
-		// CREO L'OGGETTO CONNESSIONE
-		Connection dbconn = null;
+		int lungnome = 100;
+		String nome = anag.getNome();
+		int diflungnome = lungnome - nome.length();
+		String spazio = " ";
 		
-		//STRINGA PER IL PATH DEL FILE
-		String path = "C:/prova3.txt";
+		for (int i = 0; i < diflungnome; i++) {
+			nome += spazio.replace(" ", "-");
+		}
+		
+		int lungcognome = 100;
+		String cognome = anag.getCognome();
+		int diflungcognome = lungcognome - cognome.length();
+		
+		for (int i = 0; i < diflungcognome; i++) {
+			cognome += spazio.replace(" ", "-");
+		}
+		
+		int lungtelefono = 50;
+		String telefono = anag.getTelefono();
+		int diflungtelefono = lungtelefono - telefono.length();
+		
+		for (int i = 0; i < diflungtelefono; i++) {
+			telefono += spazio.replace(" ", "-");
+		}
+		
+		int lungindirizzo = 255;
+		String indirizzo = anag.getIndirizzo();
+		int diflungindirizzo = lungindirizzo - indirizzo.length();
+		
+		for (int i = 0; i < diflungindirizzo; i++) {
+			indirizzo += spazio.replace(" ", "-");
+		}
+		
+		int lungcodicefiscale = 50;
+		String codicefiscale = anag.getCodiceFiscale();
+		int diflungcodicefiscale = lungcodicefiscale - codicefiscale.length();
+		
+		for (int i = 0; i < diflungcodicefiscale; i++) {
+			codicefiscale += spazio.replace(" ", "-");
+		}
+		
+		int lungemail = 50;
+		String email = anag.getEmail();
+		int diflungemail = lungemail - email.length();
+		
+		for (int i = 0; i < diflungemail; i++) {
+			email += spazio.replace(" ", "-");
+		}
 		
 		// LIBRERIA FILE PER CREARE UN NUOVO FILE
-		File newFile = new File(path);
+		File file = new File("file_posizionale.txt");
 		
 		// USO LA LIBRERIA FILEWRITER PER INSERIRE DATI SUL FILE DI TESTO
-		FileWriter writer = new FileWriter("prova3.txt");
+		FileWriter fwriter = new FileWriter(file, true);
 		
 		try {
 
-			// VALORIZZO L'OGGETTO CONNESSIONE
-			dbconn = db.getConnessione();
+				fwriter.write(anag.getId() + " ,");
+	            fwriter.write(nome + " ,");
+	            fwriter.write(cognome + " ,");
+	            fwriter.write(telefono + " ,");
+	            fwriter.write(indirizzo + " ,");
+	            fwriter.write(codicefiscale + " ,");
+	            fwriter.write(email + "\n");
 
-			// PREPARO LA QUERY
-			PreparedStatement statement = dbconn.prepareStatement("SELECT * FROM anagrafica");
-
-			// LANCIO LA QUERY SUL DATABASE E I RISULTATI ME LI RESTITUSCIE IN UN OGGETTO DI TIPO RESULTSET
-			ResultSet rs = statement.executeQuery();
-
-			// CICLO I VALORI CHE ARRIVANO DAL DB
-			while (rs.next()) {
-
-				AnagraficaUtente ana = new AnagraficaUtente();
-
-				// INSERISCO IL NOME DELLA COLONNA E MI PRENDO IL VALORE
-				ana.setNome(rs.getString("nome"));
-				ana.setCognome(rs.getString("cognome"));
-				ana.setId(rs.getInt("id"));
-				ana.setTelefono(rs.getString("telefono"));
-				ana.setIndirizzo(rs.getString("indirizzo"));
-				ana.setCodiceFiscale(rs.getString("cf"));
-				ana.setEmail(rs.getString("email"));
-				
-				writer.write("Nome: " + ana.getNome() + ", ");
-	            writer.write("Cognome: " + ana.getCognome() + ", ");
-	            writer.write("ID: " + ana.getId() + ", ");
-	            writer.write("Telefono: " + ana.getTelefono() + ", ");
-	            writer.write("Indirizzo: " + ana.getIndirizzo() + ", ");
-	            writer.write("Codice fiscale: " + ana.getCodiceFiscale() + ", ");
-	            writer.write("Email: " + ana.getEmail() + "\n");
-
-	            
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			try {
-				dbconn.close();
-				writer.close();
-			} catch (SQLException e) {
+				fwriter.close();
+			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("Errore nel metodo scrivoAnagraficaSuFile " + e.getMessage());
 			}
 		}
 		

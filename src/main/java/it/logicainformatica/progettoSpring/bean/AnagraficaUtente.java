@@ -4,6 +4,7 @@ public class AnagraficaUtente {
 
 	// BEAN ANAGRAFICA , SET E GET VARIABILI
 	
+	
 	int id;
 	String nome;
 	String cognome;
@@ -11,6 +12,8 @@ public class AnagraficaUtente {
 	String codiceFiscale;
 	String email;
 	String indirizzo;
+	
+
 	
 	
 	public int getId() {
