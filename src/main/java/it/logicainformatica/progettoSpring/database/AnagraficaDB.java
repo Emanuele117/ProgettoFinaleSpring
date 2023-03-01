@@ -12,19 +12,17 @@ import java.util.List;
 
 import it.logicainformatica.progettoSpring.bean.AnagraficaUtente;
 
-
-
 public class AnagraficaDB {
 
-	//INSTANZA OGGETTO DATABASE
+	// INSTANZA OGGETTO DATABASE
 	Database db = new Database();
-	
+
 	// INSERISCO UN NUOVO UTENTE
-	public void inseriscoUtenteDB(AnagraficaUtente a) {
+	public void inseriscoUtenteDB(AnagraficaUtente anag) {
 
 		// CREO L'OGGETTO CONNESSIONE
 		Connection dbconn = null;
-		
+
 		try {
 
 			// CONNESSIONE AL DATABASE
@@ -34,13 +32,13 @@ public class AnagraficaDB {
 			PreparedStatement statement = dbconn.prepareStatement(
 					"Insert into anagrafica(nome,cognome,email,telefono,CF,indirizzo) values (?,?,?,?,?,?)");
 
-			//SETTO ALLA QUERY LE VARIABILI DI ANAGRAFICA
-			statement.setString(1, a.getNome());
-			statement.setString(2, a.getCognome());
-			statement.setString(3, a.getEmail());
-			statement.setString(4, a.getTelefono());
-			statement.setString(5, a.getCodiceFiscale());
-			statement.setString(6, a.getIndirizzo());
+			// SETTO ALLA QUERY LE VARIABILI DI ANAGRAFICA
+			statement.setString(1, anag.getNome());
+			statement.setString(2, anag.getCognome());
+			statement.setString(3, anag.getEmail());
+			statement.setString(4, anag.getTelefono());
+			statement.setString(5, anag.getCodiceFiscale());
+			statement.setString(6, anag.getIndirizzo());
 
 			// VERIFICO L'INSERIMENTO DELLA QUERY
 			boolean f = statement.execute();
@@ -66,7 +64,7 @@ public class AnagraficaDB {
 		}
 
 	}
-	
+
 	// STAMPO L'ANAGRAFICA INTERA
 	public List<AnagraficaUtente> getAnagraficaAll() {
 
@@ -83,7 +81,8 @@ public class AnagraficaDB {
 			// PREPARO LA QUERY
 			PreparedStatement statement = dbconn.prepareStatement("SELECT * FROM anagrafica");
 
-			// LANCIO LA QUERY SUL DATABASE E I RISULTATI ME LI RESTITUSCIE IN UN OGGETTO DI TIPO RESULTSET
+			// LANCIO LA QUERY SUL DATABASE E I RISULTATI ME LI RESTITUSCIE IN UN OGGETTO DI
+			// TIPO RESULTSET
 			ResultSet rs = statement.executeQuery();
 
 			// CICLO I VALORI CHE ARRIVANO DAL DB
@@ -117,73 +116,86 @@ public class AnagraficaDB {
 		return lista;
 
 	}
-	
+
+
 	public void scrivoAnagraficaSuFile(AnagraficaUtente anag) throws IOException {
-		
+		int contatoreId = 0;
+
+		// LIBRERIA FILE PER CREARE UN NUOVO FILE
+		File file = new File("file_posizionale.txt");
+
+		// USO LA LIBRERIA FILEWRITER PER INSERIRE DATI SUL FILE DI TESTO
+		FileWriter fwriter = new FileWriter(file, true);
+
+		// INCREMENTO IL CONTATORE DEGLI ID
+		contatoreId++;
+
 		int lungnome = 100;
 		String nome = anag.getNome();
 		int diflungnome = lungnome - nome.length();
 		String spazio = " ";
-		
+
 		for (int i = 0; i < diflungnome; i++) {
-			nome += spazio.replace(" ", "-");
+			nome += spazio.replace(" ", "·");
 		}
-		
+
 		int lungcognome = 100;
 		String cognome = anag.getCognome();
 		int diflungcognome = lungcognome - cognome.length();
-		
+
 		for (int i = 0; i < diflungcognome; i++) {
-			cognome += spazio.replace(" ", "-");
+			cognome += spazio.replace(" ", "·");
 		}
-		
+
 		int lungtelefono = 50;
 		String telefono = anag.getTelefono();
 		int diflungtelefono = lungtelefono - telefono.length();
-		
+
 		for (int i = 0; i < diflungtelefono; i++) {
-			telefono += spazio.replace(" ", "-");
+			telefono += spazio.replace(" ", "·");
 		}
-		
+
 		int lungindirizzo = 255;
 		String indirizzo = anag.getIndirizzo();
 		int diflungindirizzo = lungindirizzo - indirizzo.length();
-		
+
 		for (int i = 0; i < diflungindirizzo; i++) {
-			indirizzo += spazio.replace(" ", "-");
+			indirizzo += spazio.replace(" ", "·");
 		}
-		
+
 		int lungcodicefiscale = 50;
 		String codicefiscale = anag.getCodiceFiscale();
 		int diflungcodicefiscale = lungcodicefiscale - codicefiscale.length();
-		
+
 		for (int i = 0; i < diflungcodicefiscale; i++) {
-			codicefiscale += spazio.replace(" ", "-");
+			codicefiscale += spazio.replace(" ", "·");
 		}
-		
+
 		int lungemail = 50;
 		String email = anag.getEmail();
 		int diflungemail = lungemail - email.length();
-		
+
 		for (int i = 0; i < diflungemail; i++) {
-			email += spazio.replace(" ", "-");
+			email += spazio.replace(" ", "·");
 		}
-		
-		// LIBRERIA FILE PER CREARE UN NUOVO FILE
-		File file = new File("file_posizionale.txt");
-		
-		// USO LA LIBRERIA FILEWRITER PER INSERIRE DATI SUL FILE DI TESTO
-		FileWriter fwriter = new FileWriter(file, true);
-		
+
+		int idLength = 11;
+		String id = String.valueOf(contatoreId);
+		int difIdLength = idLength - id.length();
+
+		for (int i = 0; i < difIdLength; i++) {
+			id += spazio.replace(" ", "·");
+		}
+
 		try {
 
-				fwriter.write(anag.getId() + " ,");
-	            fwriter.write(nome + " ,");
-	            fwriter.write(cognome + " ,");
-	            fwriter.write(telefono + " ,");
-	            fwriter.write(indirizzo + " ,");
-	            fwriter.write(codicefiscale + " ,");
-	            fwriter.write(email + "\n");
+			fwriter.write(id + " ,");
+			fwriter.write(nome + " ,");
+			fwriter.write(cognome + " ,");
+			fwriter.write(telefono + " ,");
+			fwriter.write(indirizzo + " ,");
+			fwriter.write(codicefiscale + " ,");
+			fwriter.write(email + "\n");
 
 		} finally {
 			try {
@@ -193,7 +205,6 @@ public class AnagraficaDB {
 				System.out.println("Errore nel metodo scrivoAnagraficaSuFile " + e.getMessage());
 			}
 		}
-		
 
 	}
 }
